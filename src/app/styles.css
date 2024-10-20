@@ -1,0 +1,159 @@
+/* Layout container */
+.container {
+    display: flex;
+    height: 100%;
+    background-color: #1a202c;
+    color: #f7fafc;
+}
+
+/* Left-hand side */
+.left-pane {
+    width: 50%;
+    padding: 24px;
+    background-color: #2d3748;
+}
+
+.title {
+    font-size: 2rem;
+    margin-bottom: 24px;
+    color: #63b3ed;
+    font-weight: bold;
+}
+
+.label {
+    display: block;
+    margin-bottom: 8px;
+    color: #a0aec0;
+}
+
+.input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #63b3ed;
+    border-radius: 4px;
+    background-color: #4a5568;
+    color: #f7fafc;
+}
+
+.input-group {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #63b3ed;
+    border-radius: 4px;
+    background-color: #4a5568;
+    color: #f7fafc;
+    font-family: monospace;
+}
+
+/* Buttons */
+.add-button {
+    display: inline-block;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    background-color: transparent;
+    color: #63b3ed;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+}
+
+.delete-button {
+    background-color: #e53e3e;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    font-size: 0.9rem;
+    display: inline-block;
+    width: auto;
+    height: 40px;
+    margin-left: 8px;
+}
+
+.generate-button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 16px;
+    background-color: #4299e1;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+}
+
+.generate-button:hover {
+    background-color: #3182ce;
+}
+
+/* Right-hand side */
+.right-pane {
+    width: 50%;
+    padding: 24px;
+    background-color: #2a4365;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+    color: #63b3ed;
+    font-weight: bold;
+}
+
+/* Code Block */
+.code-block {
+    background-color: #2d3748;
+    padding: 16px;
+    border-radius: 4px;
+    border: 1px solid #63b3ed;
+    min-height: 525px;
+    max-height: fit-content;
+    overflow-y: auto;
+    color: #f7fafc;
+    font-family: monospace;
+    white-space: pre; /* Preserve whitespace for formatting */
+}
+
+/* Syntax Highlighting */
+.code-block .keyword {
+    color: #f9a828; /* Color for keywords (e.g., public, class) */
+    font-weight: bold;
+}
+
+.code-block .string {
+    color: #98c379; /* Color for string literals */
+}
+
+.code-block .comment {
+    color: #5c6370; /* Color for comments */
+}
+
+.code-block .function {
+    color: #61afef; /* Color for function names */
+}
+
+.code-block .number {
+    color: #d19a66; /* Color for numbers */
+}
+
+/* Copy Button */
+.copy-button {
+    margin-top: 12px;
+    padding: 10px;
+    background-color: #48bb78;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+}
+
+.copy-button:hover {
+    background-color: #38a169;
+}
