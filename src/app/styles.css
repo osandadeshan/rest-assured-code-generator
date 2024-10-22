@@ -118,29 +118,35 @@
     overflow-y: auto;
     color: #f7fafc;
     font-family: monospace;
-    white-space: pre; /* Preserve whitespace for formatting */
+    white-space: pre;
+    /* Preserve whitespace for formatting */
 }
 
 /* Syntax Highlighting */
 .code-block .keyword {
-    color: #f9a828; /* Color for keywords (e.g., public, class) */
+    color: #f9a828;
+    /* Color for keywords (e.g., public, class) */
     font-weight: bold;
 }
 
 .code-block .string {
-    color: #98c379; /* Color for string literals */
+    color: #98c379;
+    /* Color for string literals */
 }
 
 .code-block .comment {
-    color: #5c6370; /* Color for comments */
+    color: #5c6370;
+    /* Color for comments */
 }
 
 .code-block .function {
-    color: #61afef; /* Color for function names */
+    color: #61afef;
+    /* Color for function names */
 }
 
 .code-block .number {
-    color: #d19a66; /* Color for numbers */
+    color: #d19a66;
+    /* Color for numbers */
 }
 
 /* Copy Button */
@@ -156,4 +162,10 @@
 
 .copy-button:hover {
     background-color: #38a169;
+}
+
+/* Copy Message */
+.copy-message {
+    color: #48bb78;
+    margin-top: 10px;
 }
