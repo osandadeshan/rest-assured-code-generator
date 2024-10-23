@@ -226,8 +226,9 @@ export default function Home() {
 
   const handleCopyCode = () => {
     if (codeBlockRef.current) {
-      const code = codeBlockRef.current.innerText;
-      navigator.clipboard
+      const code = codeBlockRef.current.innerText.trim();
+      if(code) {
+        navigator.clipboard
         .writeText(code)
         .then(() => {
           setCopyMessage("Code copied to clipboard!");
@@ -236,6 +237,11 @@ export default function Home() {
         .catch((err) => {
           console.error("Could not copy text: ", err);
         });
+      }
+      else {
+        setCopyMessage("Code block is empty!");
+          setTimeout(() => setCopyMessage(""), 3000); // Clear message after 3 seconds
+      }
     }
   };
 
