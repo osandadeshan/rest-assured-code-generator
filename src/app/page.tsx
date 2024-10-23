@@ -198,7 +198,7 @@ export default function Home() {
                       .setAccept(ContentType.ANY)   <span class="comment">// Set Accept header</span>
                       ${
                         requestBodyType === "JSON"
-                          ? `\n${intendation}.setBody(${formattedBody});    <span class="comment">// Set JSON request as a String</span>`
+                          ? `\n${intendation}.setBody(${formattedBody})`
                           : formData
                               .map(
                                 (param) =>
