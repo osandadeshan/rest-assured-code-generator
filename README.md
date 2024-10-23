@@ -19,7 +19,7 @@ The **RestAssured Code Generator** is a simple Next.js application designed to s
   - The left side of the application contains all input fields for user convenience.
   - The right side displays the generated RestAssured code snippet along with a "Copy Code" button.
 
-  ![UI](https://gist.github.com/user-attachments/assets/786d1168-c465-4ed3-aa9f-693b8701e0dc)
+  ![UI](app-ui.png.png)
 
 - **Code Generation**: 
   - On clicking the "Generate Code" button, the application compiles all the input data into a well-structured RestAssured test code.
