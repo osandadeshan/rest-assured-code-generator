@@ -13,6 +13,24 @@
     background-color: #2d3748;
 }
 
+.request-parameters,
+.response-parameters {
+    border: 1px solid #63b3ed;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: auto;
+}
+
+.request-parameters h2,
+.response-parameters h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #63b3ed;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
 .title {
     font-size: 2rem;
     margin-bottom: 24px;
@@ -101,6 +119,7 @@
 
 .subtitle {
     font-size: 1.5rem;
+    margin-top: 18px;
     margin-bottom: 16px;
     color: #63b3ed;
     font-weight: bold;
