@@ -1,4 +1,4 @@
-/* Layout container */
+/* Layout Container */
 .container {
     display: flex;
     height: 100%;
@@ -6,7 +6,7 @@
     color: #f7fafc;
 }
 
-/* Left-hand side */
+/* Left-Hand Side */
 .left-pane {
     width: 50%;
     padding: 24px;
@@ -55,7 +55,6 @@
 /* Buttons */
 .add-button {
     display: inline-block;
-    margin-top: 8px;
     margin-bottom: 16px;
     background-color: transparent;
     color: #63b3ed;
@@ -93,7 +92,7 @@
     background-color: #3182ce;
 }
 
-/* Right-hand side */
+/* Right-Hand Side */
 .right-pane {
     width: 50%;
     padding: 24px;
