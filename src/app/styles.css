@@ -128,7 +128,6 @@
 /* Code Block */
 .code-block {
     background-color: #2d3748;
-    padding: 16px;
     border-radius: 4px;
     border: 1px solid #63b3ed;
     min-height: 525px;
@@ -136,7 +135,7 @@
     overflow-y: auto;
     color: #f7fafc;
     font-family: monospace;
-    white-space: pre;
+    white-space: pre-line;
     /* Preserve whitespace for formatting */
 }
 

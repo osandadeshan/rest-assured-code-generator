@@ -107,7 +107,7 @@ export default function Home() {
   };
 
   const handleGenerateCode = () => {
-    const intendation = "                      ";
+    const intendation = "                  ";
     const baseUrlInput = document.querySelector(
       'input[placeholder="Base URL"]'
     ) as HTMLInputElement | null;
@@ -157,68 +157,68 @@ export default function Home() {
 
     // Generate the full Java class with imports
     let restAssuredCode = `
-      <pre>
-      <span class="keyword">import</span> io.restassured.RestAssured;
-      <span class="keyword">import</span> io.restassured.builder.RequestSpecBuilder;
-      <span class="keyword">import</span> io.restassured.http.ContentType;
-      <span class="keyword">import</span> org.testng.annotations.Test;
+  <pre>
+  <span class="keyword">import</span> io.restassured.RestAssured;
+  <span class="keyword">import</span> io.restassured.builder.RequestSpecBuilder;
+  <span class="keyword">import</span> io.restassured.http.ContentType;
+  <span class="keyword">import</span> org.testng.annotations.Test;
   
-      <span class="keyword">public</span> <span class="keyword">class</span> ApiTest {
-          <span class="keyword">@Test</span>
-          <span class="keyword">public</span> <span class="keyword">void</span> <span class="function">testApi()</span> {
-              RequestSpecBuilder requestSpecBuilder = <span class="keyword">new</span> RequestSpecBuilder()
-                      .setBaseUri("${baseUrl}")   <span class="comment">// Set API base url</span>
-                      .setBasePath("${apiEndpoint}${
+  <span class="keyword">public</span> <span class="keyword">class</span> ApiTest {
+      <span class="keyword">@Test</span>
+      <span class="keyword">public</span> <span class="keyword">void</span> <span class="function">testApi()</span> {
+          RequestSpecBuilder requestSpecBuilder = <span class="keyword">new</span> RequestSpecBuilder()
+                  .setBaseUri("${baseUrl}")   <span class="comment">// Set API base url</span>
+                  .setBasePath("${apiEndpoint}${
       pathParamPlaceholders ? "/" + pathParamPlaceholders : ""
     }")   <span class="comment">// Set endpoint with path parameters</span>
-                      ${
-                        pathParamStrings
-                          ? `\n${intendation}` +
-                            pathParamStrings +
-                            `   <span class="comment">// Add path parameters</span>`
-                          : ""
-                      }
-                      ${
-                        queryParamStrings
-                          ? `\n${intendation}` +
-                            queryParamStrings +
-                            `  <span class="comment">// Add query parameters</span>`
-                          : ""
-                      }
-                      ${
-                        headerStrings
-                          ? `\n${intendation}` +
-                            headerStrings +
-                            `  <span class="comment">// Add headers</span>`
-                          : ""
-                      }
-                      .setContentType(ContentType.${
-                        requestBodyType === "JSON" ? "JSON" : "MULTIPART"
-                      })   <span class="comment">// Set Content-Type header</span>
-                      .setAccept(ContentType.ANY)   <span class="comment">// Set Accept header</span>
-                      ${
-                        requestBodyType === "JSON"
-                          ? `\n${intendation}.setBody(${formattedBody})`
-                          : formData
-                              .map(
-                                (param) =>
-                                  `\n${intendation}.addMultiPart("${param.key}", "${param.value}")`
-                              )
-                              .join("")
-                      };
+                  ${
+                    pathParamStrings
+                      ? `\n${intendation}` +
+                        pathParamStrings +
+                        `   <span class="comment">// Add path parameters</span>`
+                      : ""
+                  }
+                  ${
+                    queryParamStrings
+                      ? `\n${intendation}` +
+                        queryParamStrings +
+                        `  <span class="comment">// Add query parameters</span>`
+                      : ""
+                  }
+                  ${
+                    headerStrings
+                      ? `\n${intendation}` +
+                        headerStrings +
+                        `  <span class="comment">// Add headers</span>`
+                      : ""
+                  }
+                  .setContentType(ContentType.${
+                    requestBodyType === "JSON" ? "JSON" : "MULTIPART"
+                  })   <span class="comment">// Set Content-Type header</span>
+                  .setAccept(ContentType.ANY)   <span class="comment">// Set Accept header</span>
+                  ${
+                    requestBodyType === "JSON"
+                      ? `\n${intendation}.setBody(${formattedBody})`
+                      : formData
+                          .map(
+                            (param) =>
+                              `\n${intendation}.addMultiPart("${param.key}", "${param.value}")`
+                          )
+                          .join("")
+                  };
           
-              RestAssured
-                      .given(requestSpecBuilder.build()).log().all()
-                      .when()
-                      .${httpMethod.toLowerCase()}()
-                      .then().log().all()
-                      .statusCode(${
-                        expectedStatusCode || 200
-                      }); <span class="comment">// Validate expected status code</span>
-          }
+          RestAssured
+                  .given(requestSpecBuilder.build()).log().all()
+                  .when()
+                  .${httpMethod.toLowerCase()}()
+                  .then().log().all()
+                  .statusCode(${
+                    expectedStatusCode || 200
+                  }); <span class="comment">// Validate expected status code</span>
       }
-      </pre>
-      `;
+  }
+  </pre>
+  `;
 
     // Display the generated code
     codeBlock.innerHTML = restAssuredCode; // Use innerHTML to allow HTML tags
@@ -227,20 +227,19 @@ export default function Home() {
   const handleCopyCode = () => {
     if (codeBlockRef.current) {
       const code = codeBlockRef.current.innerText.trim();
-      if(code) {
+      if (code) {
         navigator.clipboard
-        .writeText(code)
-        .then(() => {
-          setCopyMessage("Code copied to clipboard!");
-          setTimeout(() => setCopyMessage(""), 3000); // Clear message after 3 seconds
-        })
-        .catch((err) => {
-          console.error("Could not copy text: ", err);
-        });
-      }
-      else {
+          .writeText(code)
+          .then(() => {
+            setCopyMessage("Code copied to clipboard!");
+            setTimeout(() => setCopyMessage(""), 3000); // Clear message after 3 seconds
+          })
+          .catch((err) => {
+            console.error("Could not copy text: ", err);
+          });
+      } else {
         setCopyMessage("Code block is empty!");
-          setTimeout(() => setCopyMessage(""), 3000); // Clear message after 3 seconds
+        setTimeout(() => setCopyMessage(""), 3000); // Clear message after 3 seconds
       }
     }
   };
