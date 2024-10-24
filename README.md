@@ -1,5 +1,12 @@
 # RestAssured Code Generator
 
+![Rest Assured Code Generator](https://img.shields.io/badge/Rest%20Assured-Code%20Generator-blue)
+![GitHub deployments](https://img.shields.io/github/deployments/osandadeshan/rest-assured-code-generator/Production)
+![GitHub last commit](https://img.shields.io/github/last-commit/osandadeshan/rest-assured-code-generator)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/osandadeshan/rest-assured-code-generator)
+![GitHub top language](https://img.shields.io/github/languages/top/osandadeshan/rest-assured-code-generator)
+![GitHub contributors](https://img.shields.io/github/contributors/osandadeshan/rest-assured-code-generator)
+
 ## Overview
 
 The **RestAssured Code Generator** is a simple Next.js application designed to streamline the process of generating RestAssured test code. By inputting the necessary parameters, users can quickly obtain a code snippet that can be used to test APIs. This single-page application focuses on simplicity and efficiency, making it easier for users to create test cases without unnecessary complexity.
