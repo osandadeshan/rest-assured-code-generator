@@ -4,6 +4,8 @@
 
 The **RestAssured Code Generator** is a simple Next.js application designed to streamline the process of generating RestAssured test code. By inputting the necessary parameters, users can quickly obtain a code snippet that can be used to test APIs. This single-page application focuses on simplicity and efficiency, making it easier for users to create test cases without unnecessary complexity.
 
+![RestAssured Code Generator GIF](rest-assured-code-gen.gif)
+
 ## Features
 
 - **Input Fields**:
