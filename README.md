@@ -1,10 +1,10 @@
-# RestAssured Code Generator
+# REST Assured Code Generator
 
 ## Overview
 
-The **RestAssured Code Generator** is a simple Next.js application designed to streamline the process of generating RestAssured test code. By inputting the necessary parameters, users can quickly obtain a code snippet that can be used to test APIs. This single-page application focuses on simplicity and efficiency, making it easier for users to create test cases without unnecessary complexity.
+The **REST Assured Code Generator** is a simple Next.js application designed to streamline the process of generating REST Assured test code. By inputting the necessary parameters, users can quickly obtain a code snippet that can be used to test APIs. This single-page application focuses on simplicity and efficiency, making it easier for users to create test cases without unnecessary complexity.
 
-![RestAssured Code Generator GIF](rest-assured-code-gen.gif)
+![REST Assured Code Generator GIF](rest-assured-code-gen.gif)
 
 ## Features
 
@@ -19,12 +19,12 @@ The **RestAssured Code Generator** is a simple Next.js application designed to s
 
 - **User Interface**: 
   - The left side of the application contains all input fields for user convenience.
-  - The right side displays the generated RestAssured code snippet along with a "Copy Code" button.
+  - The right side displays the generated REST Assured code snippet along with a "Copy Code" button.
 
   ![UI](app-ui.png)
 
 - **Code Generation**: 
-  - On clicking the "Generate Code" button, the application compiles all the input data into a well-structured RestAssured test code.
+  - On clicking the "Generate Code" button, the application compiles all the input data into a well-structured REST Assured test code.
 
 ## Getting Started
 
@@ -62,7 +62,7 @@ The **RestAssured Code Generator** is a simple Next.js application designed to s
 3. Enter any necessary **Headers**.
 4. Select the appropriate **Request Body Type (JSON or form-data)** and provide the body content if required.
 5. Enter the **Expected Status Code**.
-6. Click the **Generate Code** button to create the RestAssured test code.
+6. Click the **Generate Code** button to create the REST Assured test code.
 7. Use the **Copy Code** button to easily copy the generated code to your clipboard for further use.
 
 ## Technologies Used

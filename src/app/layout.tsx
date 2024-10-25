@@ -15,9 +15,9 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "RestAssured Code Generator",
+  title: "REST Assured Code Generator",
   description:
-    "A simple Next.js application that enables users to generate RestAssured code by providing the required parameters.",
+    "A simple Next.js application that enables users to generate REST Assured code by providing the required parameters.",
 };
 
 export default function RootLayout({

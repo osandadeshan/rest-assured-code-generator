@@ -247,7 +247,7 @@ export default function Home() {
   return (
     <div className="container">
       <div className="left-pane">
-        <h1 className="title">RestAssured Code Generator</h1>
+        <h1 className="title">REST Assured Code Generator</h1>
 
         {/* Request Parameters Section */}
         <div className="request-parameters">
@@ -505,7 +505,7 @@ export default function Home() {
       <div className="right-pane">
         <h2 className="subtitle">Generated Code</h2>
         <div className="code-block" ref={codeBlockRef}>
-          {/* Generated RestAssured code will be displayed here */}
+          {/* Generated REST Assured code will be displayed here */}
         </div>
         <button className="copy-button" onClick={handleCopyCode}>
           Copy Code

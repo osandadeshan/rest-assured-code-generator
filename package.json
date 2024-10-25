@@ -1,6 +1,6 @@
 {
   "name": "rest-assured-code-generator",
-  "description": "",
+  "description": "A simple Next.js application that enables users to generate REST Assured code by providing the required parameters.",
   "developer": "Osanda Nimalarathna",
   "version": "0.1.0",
   "private": true,
