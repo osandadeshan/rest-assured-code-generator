@@ -6,6 +6,7 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/osandadeshan/rest-assured-code-generator)
 ![GitHub top language](https://img.shields.io/github/languages/top/osandadeshan/rest-assured-code-generator)
 ![GitHub contributors](https://img.shields.io/github/contributors/osandadeshan/rest-assured-code-generator)
+![GitHub License](https://img.shields.io/github/license/osandadeshan/rest-assured-code-generator)
 
 ## Overview
 
