@@ -28,7 +28,7 @@ The **REST Assured Code Generator** is a simple Next.js application designed to 
   - The left side of the application contains all input fields for user convenience.
   - The right side displays the generated REST Assured code snippet along with a "Copy Code" button.
 
-  ![UI](app-ui.png)
+  
 
 - **Code Generation**: 
   - On clicking the "Generate Code" button, the application compiles all the input data into a well-structured REST Assured test code.
