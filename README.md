@@ -78,9 +78,9 @@ The **REST Assured Code Generator** is a simple Next.js application designed to 
 - TypeScript
 - CSS (for styling)
 
-## Sample Application
+## Deployment
 
-A sample version of the application is deployed on [Vercel](https://vercel.com/). You can try it out [here](https://rest-assured-code-generator.vercel.app/).
+The application is deployed on [Vercel](https://vercel.com/). You can try it out [here](https://rest-assured-code-generator.vercel.app/).
 
 ## License
 This project is licensed under the MIT License. You are free to use, modify, and distribute this software under the terms of the license.
