@@ -1,6 +1,6 @@
 # REST Assured Code Generator
 
-![Rest Assured Code Generator](https://img.shields.io/badge/Rest%20Assured-Code%20Generator-blue)
+![REST Assured Code Generator](https://img.shields.io/badge/REST%20Assured-Code%20Generator-blue)
 ![GitHub deployments](https://img.shields.io/github/deployments/osandadeshan/rest-assured-code-generator/Production)
 ![GitHub last commit](https://img.shields.io/github/last-commit/osandadeshan/rest-assured-code-generator)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/osandadeshan/rest-assured-code-generator)
