@@ -511,6 +511,14 @@ export default function Home() {
           Copy Code
         </button>
         {copyMessage && <div className="copy-message">{copyMessage}</div>}
+        <p className="repo-instructions">
+          To use the generated API test code, clone
+          <a href="https://github.com/osandadeshan/rest-assured-codegen-test-project">
+            this GitHub repository
+          </a>
+          and place the generated tests in the <code>/src/test/java</code>{" "}
+          directory.
+        </p>
       </div>
     </div>
   );

@@ -186,3 +186,30 @@
     color: #48bb78;
     margin-top: 10px;
 }
+
+/* Repository Instructions */
+.repo-instructions {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #a0aec0;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.repo-instructions a {
+    color: #63b3ed;
+    text-decoration: none;
+    margin: 0 4px;
+}
+
+.repo-instructions a:hover {
+    text-decoration: underline;
+}
+
+.repo-instructions code {
+    background-color: #4a5568;
+    color: #f7fafc;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
