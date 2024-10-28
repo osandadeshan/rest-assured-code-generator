@@ -108,11 +108,11 @@ export default function Home() {
 
   const handleGenerateCode = () => {
     const intendation = "                  ";
-    const baseUrlInput = document.querySelector(
-      'input[placeholder="Base URL"]'
+    const baseUrlInput = document.getElementById(
+      "base-url-input"
     ) as HTMLInputElement | null;
-    const apiEndpointInput = document.querySelector(
-      'input[placeholder="API Endpoint"]'
+    const apiEndpointInput = document.getElementById(
+      "api-endpoint-input"
     ) as HTMLInputElement | null;
     const codeBlock = document.querySelector(".code-block");
 
@@ -254,10 +254,20 @@ export default function Home() {
           <h2>Request Parameters</h2>
 
           <label className="label">Base URL:</label>
-          <input type="text" className="input" placeholder="https://restful-booker.herokuapp.com" />
+          <input
+            type="text"
+            id="base-url-input"
+            className="input"
+            placeholder="https://restful-booker.herokuapp.com"
+          />
 
           <label className="label">API Endpoint:</label>
-          <input type="text" className="input" placeholder="/auth" />
+          <input
+            type="text"
+            id="api-endpoint-input"
+            className="input"
+            placeholder="/auth"
+          />
 
           <label className="label">HTTP Method:</label>
           <select
