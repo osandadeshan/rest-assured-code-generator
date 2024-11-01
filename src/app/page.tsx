@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import Select from "react-select";
-import "./styles.css"; // Importing the external CSS file
+import "./styles.css";
 
 interface StatusOption {
   value: string;
@@ -54,6 +54,14 @@ const statusCodes: StatusOption[] = [
   { value: "505", label: "505 HTTP Version Not Supported" },
 ];
 
+const validationMethods = [
+  { label: "Equal To", value: "equalTo" },
+  { label: "Contains", value: "containsString" },
+  { label: "Not Null", value: "notNullValue" },
+  { label: "Greater Than", value: "greaterThan" },
+  { label: "Less Than", value: "lessThan" },
+];
+
 export default function Home() {
   const [headers, setHeaders] = useState([{ key: "", value: "" }]);
   const [queryParams, setQueryParams] = useState([{ key: "", value: "" }]);
@@ -63,6 +71,9 @@ export default function Home() {
   const [jsonBody, setJsonBody] = useState("");
   const [httpMethod, setHttpMethod] = useState("GET");
   const [expectedStatusCode, setExpectedStatusCode] = useState<string>("");
+  const [jsonPathValidations, setJsonPathValidations] = useState([
+    { path: "", validationMethod: "equalTo", expectedValue: "" },
+  ]);
   const codeBlockRef = useRef<HTMLDivElement>(null);
   const [copyMessage, setCopyMessage] = useState("");
 
@@ -106,6 +117,15 @@ export default function Home() {
     setExpectedStatusCode(selectedOption ? selectedOption.value : "");
   };
 
+  const addJsonPathValidation = () =>
+    setJsonPathValidations([
+      ...jsonPathValidations,
+      { path: "", validationMethod: "equalTo", expectedValue: "" },
+    ]);
+
+  const removeJsonPathValidation = (index: number) =>
+    setJsonPathValidations(jsonPathValidations.filter((_, i) => i !== index));
+
   const handleGenerateCode = () => {
     const intendation = "                  ";
     const baseUrlInput = document.getElementById(
@@ -132,19 +152,28 @@ export default function Home() {
 
     const pathParamStrings = pathParams
       .filter((param) => param.key)
-      .map((param) => `.addPathParam("${param.key}", "${param.value}")`)
+      .map(
+        (param) =>
+          `.addPathParam(<span class="string">"${param.key}"</span>, <span class="string">"${param.value}"</span>)`
+      )
       .join(`\n${intendation}`); // Adjusted indentation
 
     // Query Parameters
     const queryParamStrings = queryParams
       .filter((param) => param.key && param.value)
-      .map((param) => `.addQueryParam("${param.key}", "${param.value}")`)
+      .map(
+        (param) =>
+          `.addQueryParam(<span class="string">"${param.key}"</span>, <span class="string">"${param.value}"</span>)`
+      )
       .join(`\n${intendation}`); // Adjusted indentation
 
     // Headers
     const headerStrings = headers
       .filter((header) => header.key && header.value)
-      .map((header) => `.addHeader("${header.key}", "${header.value}")`)
+      .map(
+        (header) =>
+          `.addHeader(<span class="string">"${header.key}"</span>, <span class="string">"${header.value}"</span>)`
+      )
       .join(`\n${intendation}`); // Adjusted indentation
 
     // Request Body for JSON
@@ -153,7 +182,15 @@ export default function Home() {
       .replace(/"/g, '\\"') // Escape quotes
       .replace(/\n/g, "\\n"); // Replace new lines with \n
 
-    const formattedBody = `"${bodyContent}"`;
+    const formattedBody = `<span class="string">"${bodyContent}"</span>`;
+
+    const validationStrings = jsonPathValidations
+      .filter((validation) => validation.path && validation.expectedValue)
+      .map(
+        (validation) =>
+          `.body(<span class="string">"${validation.path}"</span>, ${validation.validationMethod}(<span class="string">"${validation.expectedValue}"</span>))`
+      )
+      .join(`\n${intendation}`);
 
     // Generate the full Java class with imports
     let restAssuredCode = `
@@ -162,47 +199,38 @@ export default function Home() {
   <span class="keyword">import</span> io.restassured.builder.RequestSpecBuilder;
   <span class="keyword">import</span> io.restassured.http.ContentType;
   <span class="keyword">import</span> org.testng.annotations.Test;
+  <span class="keyword">import</span> static org.hamcrest.Matchers.*;
   
   <span class="keyword">public</span> <span class="keyword">class</span> ApiTest {
       <span class="keyword">@Test</span>
       <span class="keyword">public</span> <span class="keyword">void</span> <span class="function">testApi()</span> {
           RequestSpecBuilder requestSpecBuilder = <span class="keyword">new</span> RequestSpecBuilder()
-                  .setBaseUri("${baseUrl}")   <span class="comment">// Set API base url</span>
-                  .setBasePath("${apiEndpoint}${
+                  .setBaseUri(<span class="string">"${baseUrl}"</span>)
+                  .setBasePath(<span class="string">"${apiEndpoint}${
       pathParamPlaceholders ? "/" + pathParamPlaceholders : ""
-    }")   <span class="comment">// Set endpoint with path parameters</span>
+    }"</span>)
                   ${
                     pathParamStrings
-                      ? `\n${intendation}` +
-                        pathParamStrings +
-                        `   <span class="comment">// Add path parameters</span>`
+                      ? `\n${intendation}` + pathParamStrings
                       : ""
                   }
                   ${
                     queryParamStrings
-                      ? `\n${intendation}` +
-                        queryParamStrings +
-                        `  <span class="comment">// Add query parameters</span>`
+                      ? `\n${intendation}` + queryParamStrings
                       : ""
                   }
-                  ${
-                    headerStrings
-                      ? `\n${intendation}` +
-                        headerStrings +
-                        `  <span class="comment">// Add headers</span>`
-                      : ""
-                  }
+                  ${headerStrings ? `\n${intendation}` + headerStrings : ""}
                   .setContentType(ContentType.${
                     requestBodyType === "JSON" ? "JSON" : "MULTIPART"
-                  })   <span class="comment">// Set Content-Type header</span>
-                  .setAccept(ContentType.ANY)   <span class="comment">// Set Accept header</span>
+                  })
+                  .setAccept(ContentType.ANY)
                   ${
                     requestBodyType === "JSON"
                       ? `\n${intendation}.setBody(${formattedBody})`
                       : formData
                           .map(
                             (param) =>
-                              `\n${intendation}.addMultiPart("${param.key}", "${param.value}")`
+                              `\n${intendation}.addMultiPart(<span class="string">"${param.key}"</span>, <span class="string">"${param.value}"</span>)`
                           )
                           .join("")
                   };
@@ -212,9 +240,10 @@ export default function Home() {
                   .when()
                   .${httpMethod.toLowerCase()}()
                   .then().log().all()
-                  .statusCode(${
+                  .statusCode(<span class="integer">${
                     expectedStatusCode || 200
-                  }); <span class="comment">// Validate expected status code</span>
+                  }</span>)
+                  ${validationStrings};
       }
   }
   </pre>
@@ -308,10 +337,10 @@ export default function Home() {
                 placeholder="Value"
               />
               <button
-                className="delete-button"
+                className="remove-button"
                 onClick={() => removePathParam(index)}
               >
-                Delete
+                Remove
               </button>
             </div>
           ))}
@@ -345,10 +374,10 @@ export default function Home() {
                 placeholder="Value"
               />
               <button
-                className="delete-button"
+                className="remove-button"
                 onClick={() => removeQueryParam(index)}
               >
-                Delete
+                Remove
               </button>
             </div>
           ))}
@@ -382,10 +411,10 @@ export default function Home() {
                 placeholder="Value"
               />
               <button
-                className="delete-button"
+                className="remove-button"
                 onClick={() => removeHeader(index)}
               >
-                Delete
+                Remove
               </button>
             </div>
           ))}
@@ -443,10 +472,10 @@ export default function Home() {
                     placeholder="Value"
                   />
                   <button
-                    className="delete-button"
+                    className="remove-button"
                     onClick={() => removeFormData(index)}
                   >
-                    Delete
+                    Remove
                   </button>
                 </div>
               ))}
@@ -458,8 +487,8 @@ export default function Home() {
         </div>
 
         {/* Response Parameters Section */}
-        <div className="response-parameters">
-          <h2>Response Parameters</h2>
+        <div className="response-validations">
+          <h2>Response Validations</h2>
 
           <label className="label">Expected Status Code:</label>
           <Select
@@ -505,6 +534,57 @@ export default function Home() {
               }),
             }}
           />
+          <label className="label">JSONPath Validations:</label>
+          {jsonPathValidations.map((validation, index) => (
+            <div key={index} className="input-group">
+              <input
+                type="text"
+                className="input"
+                placeholder="JSONPath Expression"
+                value={validation.path}
+                onChange={(e) => {
+                  const newValidations = [...jsonPathValidations];
+                  newValidations[index].path = e.target.value;
+                  setJsonPathValidations(newValidations);
+                }}
+              />
+              <select
+                className="input"
+                value={validation.validationMethod}
+                onChange={(e) => {
+                  const newValidations = [...jsonPathValidations];
+                  newValidations[index].validationMethod = e.target.value;
+                  setJsonPathValidations(newValidations);
+                }}
+              >
+                {validationMethods.map((method) => (
+                  <option key={method.value} value={method.value}>
+                    {method.label}
+                  </option>
+                ))}
+              </select>
+              <input
+                type="text"
+                className="input"
+                placeholder="Expected Value"
+                value={validation.expectedValue}
+                onChange={(e) => {
+                  const newValidations = [...jsonPathValidations];
+                  newValidations[index].expectedValue = e.target.value;
+                  setJsonPathValidations(newValidations);
+                }}
+              />
+              <button
+                className="remove-button"
+                onClick={() => removeJsonPathValidation(index)}
+              >
+                Remove
+              </button>
+            </div>
+          ))}
+          <button className="add-button" onClick={addJsonPathValidation}>
+            Add JSONPath Validation
+          </button>
         </div>
 
         <button className="generate-button" onClick={handleGenerateCode}>
