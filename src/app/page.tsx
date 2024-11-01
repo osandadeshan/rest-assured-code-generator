@@ -184,13 +184,26 @@ export default function Home() {
 
     const formattedBody = `<span class="string">"${bodyContent}"</span>`;
 
-    const validationStrings = jsonPathValidations
-      .filter((validation) => validation.path && validation.expectedValue)
+    const validJsonPathValidationStatements = jsonPathValidations
+      .filter(
+        (validation) =>
+          validation.path?.trim() && validation.expectedValue?.trim()
+      )
       .map(
         (validation) =>
           `.body(<span class="string">"${validation.path}"</span>, ${validation.validationMethod}(<span class="string">"${validation.expectedValue}"</span>))`
-      )
-      .join(`\n${intendation}`);
+      );
+
+    // Join the filtered validations into a single string
+    const joinedJsonPathValidationStatements =
+      validJsonPathValidationStatements.join(`\n${intendation}`);
+
+    // Check for valid JSONPath validations
+    const hasJsonPathValidations = validJsonPathValidationStatements.length > 0;
+
+    // Determine semicolon placement
+    const semicolonForStatusCode = hasJsonPathValidations ? "" : ";";
+    const semicolonForJsonPaths = hasJsonPathValidations ? ";" : "";
 
     // Generate the full Java class with imports
     let restAssuredCode = `
@@ -242,8 +255,12 @@ export default function Home() {
                   .then().log().all()
                   .statusCode(<span class="integer">${
                     expectedStatusCode || 200
-                  }</span>)
-                  ${validationStrings};
+                  }</span>)${semicolonForStatusCode}
+                  ${
+                    hasJsonPathValidations
+                      ? `${joinedJsonPathValidationStatements}${semicolonForJsonPaths}`
+                      : ""
+                  }
       }
   }
   </pre>
