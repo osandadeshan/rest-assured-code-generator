@@ -14,7 +14,7 @@
 }
 
 .request-parameters,
-.response-parameters {
+.response-validations {
     border: 1px solid #63b3ed;
     border-radius: 5px;
     padding: 15px;
@@ -23,7 +23,7 @@
 }
 
 .request-parameters h2,
-.response-parameters h2 {
+.response-validations h2 {
     margin-top: 0;
     margin-bottom: 15px;
     color: #63b3ed;
@@ -40,11 +40,14 @@
 
 .label {
     display: block;
+    margin-top: 8px;
     margin-bottom: 8px;
+    font-weight: bold;
     color: #a0aec0;
 }
 
 .input {
+    height: 40px;
     width: 100%;
     padding: 8px;
     margin-bottom: 16px;
@@ -81,7 +84,7 @@
     font-size: 1rem;
 }
 
-.delete-button {
+.remove-button {
     background-color: #e53e3e;
     color: white;
     padding: 6px 10px;
@@ -151,19 +154,14 @@
     /* Color for string literals */
 }
 
-.code-block .comment {
-    color: #5c6370;
-    /* Color for comments */
+.code-block .integer {
+    color: #068ef0;
+    /* Color for integers */
 }
 
 .code-block .function {
     color: #61afef;
     /* Color for function names */
-}
-
-.code-block .number {
-    color: #d19a66;
-    /* Color for numbers */
 }
 
 /* Copy Button */
